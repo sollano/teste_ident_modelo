@@ -2,7 +2,7 @@
 ## ---
 
 ## title: Script para teste de identidade de modelo
-## subtitle: Conforme descrito por Regazzi, 1996
+## subtitle: Conforme descrito por Regazzi, 1993
 
 ## author:
 ## - Sollano Rabelo Braga 
