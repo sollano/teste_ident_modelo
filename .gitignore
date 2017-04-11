@@ -2,7 +2,7 @@
 /*.png
 /*.jpg
 planilhas
-/*.Rproj
+
 
 # History files
 .Rhistory
@@ -80,3 +80,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+.Rproj.user
