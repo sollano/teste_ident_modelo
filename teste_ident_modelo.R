@@ -184,14 +184,14 @@ gl_reducao <- gl_comp - gl_redz
 ## Graus de liberdade do resíduo:
 gl_residuo <- lm_comp$df.residual
 
-## Soma de quadrado da regerssão do modelo completo:
-SQReg_comp <- sum(lm_comp$fitted.values^2)
+## Soma de quadrado de parâmetros (modelo completo):
+SQ_Param <- sum(lm_comp$fitted.values^2)
 
-## Soma de quadrado da regerssão do modelo reduzido:
+## Soma de quadrado da regressão do modelo reduzido:
 SQReg_redz <- sum(lm_redz$fitted.values^2) # + C
 
 ## Soma de quadrado da redução:
-SQ_reducao <- SQReg_comp - SQReg_redz
+SQ_reducao <- SQ_Param - SQReg_redz
 
 ## Soma de quadrado dos resíduos modelo completo:
 SQRes_comp <- sum(lm_comp$residuals^2)
@@ -219,7 +219,7 @@ tabela_regazzi <- data.frame(
     
     FV = c("Parametro_c", "Parametro_r", "Reducao", "Residuo"),
     GL = c(gl_comp, gl_redz, gl_reducao, gl_residuo ),
-    SQ = round(c(SQReg_comp, SQReg_redz, SQ_reducao, SQRes_comp), 2),
+    SQ = round(c(SQ_Param, SQReg_redz, SQ_reducao, SQRes_comp), 2),
     QM = c("", "", QMReducao, QMResiduo ),
     F_Regazzi = c("", F_regazzi ,"",""),
     F_tabelado = c("", F_tabelado, "",""),
