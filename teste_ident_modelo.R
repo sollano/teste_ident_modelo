@@ -184,17 +184,23 @@ gl_reducao <- gl_comp - gl_redz
 ## Graus de liberdade do resíduo:
 gl_residuo <- lm_comp$df.residual
 
-## Soma de quadrado da regerssão do modelo completo:
-SQReg_comp <- sum(lm_comp$fitted.values^2)
+## Soma de quadrado de parâmetros (modelo completo):
+SQParamC <- sum(lm_comp$fitted.values^2)
 
-## Soma de quadrado da regerssão do modelo reduzido:
-SQReg_redz <- sum(lm_redz$fitted.values^2) # + C
+## Soma de quadrado da regressão do modelo reduzido:
+SQParamR <- sum(lm_redz$fitted.values^2) # + C
 
 ## Soma de quadrado da redução:
-SQ_reducao <- SQReg_comp - SQReg_redz
+SQ_reducao <- SQParamC - SQParamR
 
 ## Soma de quadrado dos resíduos modelo completo:
 SQRes_comp <- sum(lm_comp$residuals^2)
+
+## Quadrado médio de Parametro modelo Completo:
+QMParamC <- SQParamC/gl_comp
+
+## Quadrado médio de Parametro modelo Completo:
+QMParamR <- SQParamR/gl_redz
 
 ## Quadrado médio da redução:
 QMReducao <- round(SQ_reducao / gl_reducao, 4)
@@ -219,12 +225,12 @@ tabela_regazzi <- data.frame(
     
     FV = c("Parametro_c", "Parametro_r", "Reducao", "Residuo"),
     GL = c(gl_comp, gl_redz, gl_reducao, gl_residuo ),
-    SQ = round(c(SQReg_comp, SQReg_redz, SQ_reducao, SQRes_comp), 2),
-    QM = c("", "", QMReducao, QMResiduo ),
-    F_Regazzi = c("", F_regazzi ,"",""),
-    F_tabelado = c("", F_tabelado, "",""),
-    p.valor = c("", signif(p_valor, 3), "", ""),
-    Resultado = c("", resultado, "", "")
+    SQ = round(c(SQParamC, SQParamR, SQ_reducao, SQRes_comp), 2),
+    QM = c(QMParamC, QMParamC, QMReducao, QMResiduo ),
+    F_Regazzi = c("","", F_regazzi ,""),
+    F_tabelado = c("","", F_tabelado,""),
+    p.valor = c("", "", signif(p_valor, 3),  ""),
+    Resultado = c("", "", resultado,  "")
     
     
   )
@@ -233,7 +239,7 @@ tabela_regazzi
 
 ## Para realizar o gráfico, utiliza-se a função ggplot:
 ggplot(dados, aes(N, DAP) ) +
-  geom_smooth(method = "lm",formula = y ~ poly(x, 2) ,aes(color=PROJETO), se = F, size = 1.5) + 
+  geom_smooth(method = "lm",formula = y ~ poly(x, 2, raw=T) ,aes(color=PROJETO), se = F, size = 1.5) + 
   stat_summary(fun.y = mean, geom = "point", size = 3)
 
 ## \pagebreak
