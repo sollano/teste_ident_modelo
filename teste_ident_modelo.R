@@ -64,7 +64,6 @@ dados
 ##
 ## A seguir ajusta-se o modelo reduzido, e salva-se o seu resultado em um objeto:
 lm_redz <- lm(DAP ~  N + N2, dados)
-
 summary(lm_redz)
 
 ## # 3) Criação das variáveis Dummy ####
@@ -98,12 +97,10 @@ factor_levels
 ## Antes de realizar o loop, cria-se a lista que será utilizado:
 lista1 <- list()
 
-  for(i in 1:2){
-    
-    lista1[[paste("D", i, sep = "")]] <- ifelse(dados$PROJETO == factor_levels[i], 1, 0 )
-    
-  }
-
+for(i in 1:2){
+  
+  lista1[[paste("D", i, sep = "")]] <- ifelse(dados$PROJETO == factor_levels[i], 1, 0 )
+}
 lista1
 
 ## Agora basta converter a losta em uma matriz:
@@ -130,9 +127,7 @@ for(j in 1:2){
     
     lista2[[paste("D", i, VARSX[j],sep = "")]] <- ifelse( 
       dados$PROJETO == factor_levels[i], dados[[   VARSX[j]   ]] ,  0  ) 
-    
   }
-  
 }
 
 lista2
@@ -222,25 +217,23 @@ resultado <- ifelse(p_valor < 0.05, "*", "ns")
 
 ## Agora basta unir tudo em um data frame:
 tabela_regazzi <- data.frame(
-    
-    FV = c("Parametro_c", "Parametro_r", "Reducao", "Residuo"),
-    GL = c(gl_comp, gl_redz, gl_reducao, gl_residuo ),
-    SQ = round(c(SQParamC, SQParamR, SQ_reducao, SQRes_comp), 2),
-    QM = c(QMParamC, QMParamC, QMReducao, QMResiduo ),
-    F_Regazzi = c("","", F_regazzi ,""),
-    F_tabelado = c("","", F_tabelado,""),
-    p.valor = c("", "", signif(p_valor, 3),  ""),
-    Resultado = c("", "", resultado,  "")
-    
-    
-  )
-
+  
+  FV = c("Parametro_c", "Parametro_r", "Reducao", "Residuo"),
+  GL = c(gl_comp, gl_redz, gl_reducao, gl_residuo ),
+  SQ = round(c(SQParamC, SQParamR, SQ_reducao, SQRes_comp), 2),
+  QM = c(QMParamC, QMParamC, QMReducao, QMResiduo ),
+  F_Regazzi = c("","", F_regazzi ,""),
+  F_tabelado = c("","", F_tabelado,""),
+  p.valor = c("", "", signif(p_valor, 3),  ""),
+  Resultado = c("", "", resultado,  "")
+)
 tabela_regazzi 
 
 ## Para realizar o gráfico, utiliza-se a função ggplot:
 ggplot(dados, aes(N, DAP) ) +
   geom_smooth(method = "lm",formula = y ~ poly(x, 2, raw=T) ,aes(color=PROJETO), se = F, size = 1.5) + 
   stat_summary(fun.y = mean, geom = "point", size = 3) + 
+  theme_gray(base_family = "serif") +
   ggplot2::theme(
     legend.position = "bottom",
     panel.grid.major = ggplot2::element_blank(), 
