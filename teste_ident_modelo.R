@@ -240,7 +240,18 @@ tabela_regazzi
 ## Para realizar o gráfico, utiliza-se a função ggplot:
 ggplot(dados, aes(N, DAP) ) +
   geom_smooth(method = "lm",formula = y ~ poly(x, 2, raw=T) ,aes(color=PROJETO), se = F, size = 1.5) + 
-  stat_summary(fun.y = mean, geom = "point", size = 3)
+  stat_summary(fun.y = mean, geom = "point", size = 3) + 
+  ggplot2::theme(
+    legend.position = "bottom",
+    panel.grid.major = ggplot2::element_blank(), 
+    panel.grid.minor = ggplot2::element_blank(),
+    panel.border = ggplot2::element_blank(),
+    axis.line.x = ggplot2::element_line(color="black"),
+    axis.line.y = ggplot2::element_line(color="black"),
+    legend.title    = ggplot2::element_text(size = 12, face = "bold"),
+    legend.text     = ggplot2::element_text(size = 12),
+    axis.title      = ggplot2::element_text(size = 14), 
+    axis.text       = ggplot2::element_text(size = 12) )
 
 ## \pagebreak
 ##
