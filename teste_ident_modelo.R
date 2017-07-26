@@ -246,4 +246,4 @@ forestr::ident_model(dados, "PROJETO", DAP ~  N + N2)
 
 ## Com a saída completa são mostrados o gráfico dos modelos, 
 ## a tabela de dummies, o relatório dos dois modelos, e a tabela anova:
-forestr::ident_model(dados, "PROJETO", DAP ~  N + N2, saida_full = T)
+forestr::ident_model(dados, "PROJETO", DAP ~  N + N2, output = "full")
