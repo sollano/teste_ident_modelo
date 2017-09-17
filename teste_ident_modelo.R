@@ -8,7 +8,7 @@
 ## - Sollano Rabelo Braga 
 ## - Marcio Leles Romarco de Oliveira
 
-## date: Dezembro, 2016
+## date: Janeiro, 2017
 
 ## output:
 
@@ -248,12 +248,10 @@ ggplot(dados, aes(N, DAP) ) +
 
 ## \pagebreak
 ##
-## O teste pode ser feito de forma direta com o pacote forestr (ainda em desenvolvimento):
+## # 6) Citação ####
+## Para citar esse script, utilize:
+##(BRAGA; OLIVEIRA, 2017)
 ##
-## Por padrão o F calculado e o resultado utilizam 5% de significancia, 
-## que pode ser alterada com o argumento signif, caso desejado:
-forestr::ident_model(dados, "PROJETO", DAP ~  N + N2)
+## Rotina para realização do teste de identidade de modelo. 2017. Disponível em: https://github.com/sollano/
+##
 
-## Com a saída completa são mostrados o gráfico dos modelos, 
-## a tabela de dummies, o relatório dos dois modelos, e a tabela anova:
-forestr::ident_model(dados, "PROJETO", DAP ~  N + N2, output = "full")
