@@ -265,7 +265,7 @@ forestr::ident_model(dados, "PROJETO", DAP ~  N + N2, output = "full")
 ##
 ## Na referencia, você pode usar
 ##
-## Rotina para realização do teste de identidade de modelo. 2017. Disponível em: https://github.com/sollano/teste_ident_modelo
+## BRAGA S.R; OLIVEIRA M.L.R. Rotina para realização do teste de identidade de modelo. 2017. Disponível em: https://github.com/sollano/teste_ident_modelo
 ##
 
 
