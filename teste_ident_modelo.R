@@ -229,6 +229,8 @@ tabela_regazzi <- data.frame(
 )
 tabela_regazzi 
 
+## # 6) Gráfico ####
+
 ## Para realizar o gráfico, utiliza-se a função ggplot:
 ggplot(dados, aes(N, DAP) ) +
   geom_smooth(method = "lm",formula = y ~ poly(x, 2, raw=T) ,aes(color=PROJETO), se = F, size = 1.5) + 
@@ -245,7 +247,7 @@ ggplot(dados, aes(N, DAP) ) +
     legend.text     = ggplot2::element_text(size = 12),
     axis.title      = ggplot2::element_text(size = 14), 
     axis.text       = ggplot2::element_text(size = 12) )
-
+## # 7) Pacote forestr ####
 ## \pagebreak
 ##
 ## O teste pode ser feito de forma direta com o pacote forestr (ainda em desenvolvimento):
@@ -257,3 +259,14 @@ forestr::ident_model(dados, "PROJETO", DAP ~  N + N2)
 ## Com a saída completa são mostrados o gráfico dos modelos, 
 ## a tabela de dummies, o relatório dos dois modelos, e a tabela anova:
 forestr::ident_model(dados, "PROJETO", DAP ~  N + N2, output = "full")
+
+## # 8) Citação ####
+## Na citação  você pode utilizar: (BRAGA; OLIVEIRA, 2017)
+##
+## Na referencia, você pode usar
+##
+## Rotina para realização do teste de identidade de modelo. 2017. Disponível em: https://github.com/sollano/teste_ident_modelo
+##
+
+
+
